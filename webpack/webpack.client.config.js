@@ -1,9 +1,15 @@
 const { resolve } = require('path');
+const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   context: resolve(__dirname, '..'),
-  entry: resolve('src', 'index.js'),
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    resolve('src', 'index.js'),
+  ],
   output: {
     filename: 'bundle.js',
     path: resolve('dist'),
@@ -30,7 +36,13 @@ const config = {
       },
     ],
   },
+  devServer: {
+    hot: true,
+    // publicPath: '/dist',
+  },
   plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
       title: 'Simple webpack starter',
       template: 'index.ejs',

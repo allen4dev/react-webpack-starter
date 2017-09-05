@@ -5,4 +5,14 @@ import Client from './Client';
 
 // Here comes Provider from redux internationalization and
 // common stuff for client and server.
-render(<Client />, document.getElementById('app'));
+function renderApp() {
+  render(<Client />, document.getElementById('app'));
+}
+
+renderApp();
+
+if (module.hot) {
+  module.hot.accept('./Client', function() {
+    renderApp();
+  });
+}

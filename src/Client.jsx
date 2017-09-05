@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Title from './shared/Title';
+import Image from './shared/Image';
 
 import './app.css';
 
@@ -9,6 +10,7 @@ function Client() {
   return (
     <div className="Client">
       <Title />
+      <Image />
     </div>
   );
 }
