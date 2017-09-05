@@ -1,3 +1,8 @@
-var nanjo = 'Yoshino Nanjo';
+import React from 'react';
+import { render } from 'react-dom';
 
-console.log(nanjo);
+import Client from './Client';
+
+// Here comes Provider from redux internationalization and
+// common stuff for client and server.
+render(<Client />, document.getElementById('app'));
