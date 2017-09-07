@@ -1,18 +1,24 @@
 import React from 'react';
+import { render } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import Title from './shared/Title';
-import Image from './shared/Image';
+import App from './App';
 
-import './app.css';
-
-// Here comes Client Router and common stuff from cloent
-function Client() {
-  return (
-    <div className="Client">
-      <Title />
-      <Image />
-    </div>
+// Here comes Provider from redux internationalization and
+// common stuff for client and server.
+function renderApp() {
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+    document.getElementById('app')
   );
 }
 
-export default Client;
+renderApp();
+
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    renderApp();
+  });
+}

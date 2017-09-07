@@ -6,8 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "start":
-      "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
+    "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
     "dev": "webpack-dev-server --env development"
   },
   "keywords": [],
@@ -16,6 +15,7 @@
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-router-dom": "^4.2.2",
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {

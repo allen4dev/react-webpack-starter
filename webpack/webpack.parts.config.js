@@ -96,6 +96,7 @@ exports.devServer = function devServer() {
     devServer: {
       historyApiFallback: true,
       hot: true,
+      publicPath: '/',
     },
   };
 };
