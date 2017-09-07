@@ -29,7 +29,7 @@ exports.injectCSS = function injectCSS() {
   };
 };
 
-exports.loadImages = function loadImages({ options }) {
+exports.loadImages = function loadImages(options) {
   return {
     module: {
       rules: [
@@ -42,6 +42,21 @@ exports.loadImages = function loadImages({ options }) {
             //   limit: 20000,
             // },
           },
+        },
+      ],
+    },
+  };
+};
+
+exports.lintJavascript = function lintJS() {
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          use: 'eslint-loader',
+          exclude: /node_modules/,
+          enforce: 'pre',
         },
       ],
     },

@@ -12,7 +12,7 @@ function renderApp() {
 renderApp();
 
 if (module.hot) {
-  module.hot.accept('./Client', function() {
+  module.hot.accept('./Client', () => {
     renderApp();
   });
 }

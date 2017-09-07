@@ -1,35 +1,63 @@
 const { resolve } = require('path');
 const merge = require('webpack-merge');
 
-const commonConfig = require('./webpack.common');
-const parts = require('./webpack.parts');
+const parts = require('./webpack.parts.config');
 
-const config = merge([
-  // loaders
-  parts.injectCSS(),
-  // plugins
-  parts.setupHTML({
-    title: 'Simple webpack starter',
-    template: 'index.ejs',
-  }),
-  parts.setupHMR(),
-  // config
-  parts.devServer(),
-  {
-    context: resolve(__dirname, '..'),
-    entry: [resolve('src', 'index.js')],
-    output: {
-      filename: 'bundle.js',
-      path: resolve('dist'),
+const commonConfig = function commonConfig() {
+  const common = merge([
+    {
+      context: resolve(__dirname, '..'),
+      entry: [resolve('src', 'index.jsx')],
+      output: {
+        filename: 'bundle.js',
+        path: resolve('dist'),
+      },
+      resolve: {
+        extensions: ['.js', '.jsx', 'json'],
+      },
+      target: 'web',
     },
-    resolve: {
-      extensions: ['.js', '.jsx', 'json'],
-    },
-    target: 'web',
-  },
-  commonConfig,
-]);
+    // loaders
+    parts.babelTranspile(),
+    parts.loadImages({ limit: 20000 }),
+    // plugins
+    parts.setupHTML({
+      title: 'Simple webpack starter',
+      template: 'index.ejs',
+    }),
+  ]);
 
-console.log(config);
+  // console.log('COMMON', common);
 
-module.exports = config;
+  return common;
+};
+
+const developmentConfig = function developmentConfig() {
+  const devConfig = merge([
+    // loaders
+    parts.injectCSS(),
+    parts.lintJavascript(),
+    // plugins
+    parts.setupHMR(),
+    // config
+    parts.devServer(),
+  ]);
+
+  return devConfig;
+};
+
+const productionConfig = function() {};
+
+module.exports = function clientConfig(env) {
+  let config;
+
+  if (env === 'production') {
+    config = merge(productionConfig(), commonConfig());
+    // console.log(`ENV: ${env}`, config);
+    return config;
+  }
+
+  config = merge(developmentConfig(), commonConfig());
+  // console.log(`ENV: ${env}`, config);
+  return config;
+};
