@@ -10,12 +10,14 @@
         "modules": false
       }
     ],
+    "flow",
     "react"
   ],
   "plugins": [
     "react-hot-loader/babel",
     "transform-regenerator",
-    "transform-runtime"
+    "transform-runtime",
+    "transform-class-properties"
   ],
   "env": {
     "test": {

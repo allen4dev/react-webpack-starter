@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
+// @flow
+
+import * as React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 
 // Here comes App specific stuff from client and server
 // (Provider, etc)
 
-class Home extends Component {
-  async componentDidMount() {
-    const val = await Promise.resolve(42);
-    console.log(val);
-  }
+type State = {
+  dummieState: string,
+};
+
+class Home extends React.Component<{}, State> {
+  state = {
+    dummieState: '',
+  };
 
   render() {
     return (
