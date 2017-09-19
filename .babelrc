@@ -4,12 +4,22 @@
       "env",
       {
         "targets": {
-          "browsers": "last 2 versions"
+          "browsers": "last 2 versions",
+          "node": "current"
         },
         "modules": false
       }
     ],
     "react"
   ],
-  "plugins": ["react-hot-loader/babel"]
+  "plugins": [
+    "react-hot-loader/babel",
+    "transform-regenerator",
+    "transform-runtime"
+  ],
+  "env": {
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
 }

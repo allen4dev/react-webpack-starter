@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title shoud be render 1`] = `
+<h1
+  className="Title"
+>
+  Testing HMR
+</h1>
+`;

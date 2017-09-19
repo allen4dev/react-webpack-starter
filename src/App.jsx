@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 
 // Here comes App specific stuff from client and server
 // (Provider, etc)
 
-function Home() {
-  return (
-    <div>
-      <h1>You are in Home</h1>
-      <Link to="/category/anime">Go to anime</Link>
-      <Link to="/random">Go to random</Link>
-    </div>
-  );
+class Home extends Component {
+  async componentDidMount() {
+    const val = await Promise.resolve(42);
+    console.log(val);
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>You are in Home</h1>
+        <Link to="/category/anime">Go to anime</Link>
+        <Link to="/random">Go to random</Link>
+      </div>
+    );
+  }
 }
 
 function Error404() {
