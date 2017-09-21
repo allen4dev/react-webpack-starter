@@ -1,7 +1,10 @@
 // @flow
 
 import * as React from 'react';
+import { Provider } from 'react-redux';
 import { Switch, Route, Link } from 'react-router-dom';
+
+import store from './store';
 
 // Here comes App specific stuff from client and server
 // (Provider, etc)
@@ -31,18 +34,24 @@ function Error404() {
 }
 /* eslint-disable*/
 function Category({ match }) {
-  return <h1>You are in Category: {match.params.name}</h1>;
+  return (
+    <h1>
+      You are in Category: {match.params.name}
+    </h1>
+  );
 }
 
 function App() {
   return (
-    <div className="App">
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/category/:name" component={Category} />
-        <Route component={Error404} />
-      </Switch>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/category/:name" component={Category} />
+          <Route component={Error404} />
+        </Switch>
+      </div>
+    </Provider>
   );
 }
 

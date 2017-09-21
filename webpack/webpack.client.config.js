@@ -7,7 +7,7 @@ const commonConfig = function commonConfig() {
   const common = merge([
     {
       context: resolve(__dirname, '..'),
-      entry: [resolve('src', 'client.jsx')],
+      entry: [resolve('src', 'Client.jsx')],
       output: {
         filename: 'bundle.js',
         path: resolve('dist'),
